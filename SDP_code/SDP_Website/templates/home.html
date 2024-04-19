@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Moisture Data Graph</title>
+  <style>
+    /* CSS code to set background color */
+    body {
+      background-color: #E9E6E1; /* Change this to any color you prefer */
+      display: flex;
+      flex-direction: column; /* Arrange children in a vertical column */
+      align-items: center; /* Center content horizontally */
+    }
+    .container {
+      display: flex; /* Use flexbox for horizontal arrangement */
+      justify-content: space-between; /* Distribute items evenly along the main axis */
+      width: 70%; /* Adjust width as needed */
+      margin-top: 20px; /* Adjust margin as needed */
+    }
+    .left-panel {
+      width: 30%; /* Adjust the width as needed */
+      background-color: #FFF; /* Change this to any color you prefer */
+      padding: 20px; /* Adjust padding as needed */
+      margin-right: 20px; /* Adjust margin as needed */
+    }
+    canvas {
+      margin-bottom: 20px; /* Adjust margin as needed */
+    }
+  </style>
+  <link rel="stylesheet" type="text/css" href="styles.css">
+
+  <!-- Include Chart.js library -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <div class="container">
+    <div class="left-panel">
+        <button class="custom-button" onclick="openPopup()">Name Plants</button>
+        <p>Recommendations</p>
+        <div id="recommendationsArea"></div>
+    </div>          
+    <div class="charts">
+      <canvas id="moistureChart0" width="400" height="200"></canvas>
+      <canvas id="moistureChart1" width="400" height="200"></canvas>
+      <canvas id="moistureChart2" width="400" height="200"></canvas>
+      <canvas id="moistureChart3" width="400" height="200"></canvas>
+    </div>
+  </div>
+  <!-- Popup HTML -->
+  <div id="popup" class="popup">
+    <div class="popup-content">
+      <span class="close" onclick="closePopup()">&times;</span>
+      <select id="jsonDropdown"></select>
+      <input type="text" id="newTitle" placeholder="Enter new title">
+      <button onclick="updateTitle()">Update Title</button>
+    </div>
+  </div>
+
+  <script src="home.js"></script>
+  <script src="home_reccomendations.js"></script>
+  <script src="popup.js"></script>
+</body>
+</html>
