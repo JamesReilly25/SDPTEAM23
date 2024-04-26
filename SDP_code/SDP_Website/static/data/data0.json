@@ -3,6 +3,14 @@
     "id": 0,
     "title": "plant 0",
     "time_labels": [],
-    "moisture_data": []
+    "moisture_data": [],
+    "readings_per_day": 4,
+    "last_water_amount": 100,
+    "time_of_last_water": "2024-04-23 03:25PM",
+    "water_multiplier": 1,
+    "current_watering_period" : 1,
+    "graph_period": 10,
+    "current_target": 1
+    
   }
   

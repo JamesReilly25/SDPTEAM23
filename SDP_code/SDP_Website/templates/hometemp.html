@@ -19,13 +19,39 @@
       margin-top: 20px; /* Adjust margin as needed */
     }
     .left-panel {
-      width: 30%; /* Adjust the width as needed */
+      width: 40%; /* Adjust the width as needed */
       background-color: #FFF; /* Change this to any color you prefer */
       padding: 20px; /* Adjust padding as needed */
       margin-right: 20px; /* Adjust margin as needed */
     }
+    .charts {
+      /* Define styles for charts if needed */
+    }
     canvas {
       margin-bottom: 20px; /* Adjust margin as needed */
+    }
+    .number-box {
+      background-color: #444; /* Dark gray background */
+      padding: 10px; /* Adjust padding as needed */
+      margin-bottom: 20px; /* Adjust margin as needed */
+      color: #FFF; /* White text color */
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .text {
+      font-size: 18px; /* Adjust font size as needed */
+    }
+    .numbers-container {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+    }
+    .number {
+      font-size: 18px; /* Adjust font size as needed */
+    }
+    h4 {
+            font-weight: normal; /* Set font-weight to normal to remove bold */
     }
   </style>
   <link rel="stylesheet" type="text/css" href="/static/styles.css">
@@ -38,6 +64,19 @@
     <div class="left-panel">
         <button class="custom-button" onclick="openPopup('popup')">Name Plants</button>
         <button class="custom-button" onclick="openPopup('popup_schedule')">Set Schedule</button>
+        <button class="custom-button" onclick="openPopup('popup_graph')">Graph Settings</button>
+        <!-- Dark gray box for numbers -->
+        <div class="number-box">
+            <div class="text">Current amount to water (ml) as of <span id="lastWaterTime">-</span></div> <!-- Text row -->
+            <div class="numbers-container">
+                <span class="number">-</span>
+                <span class="number">-</span>
+                <span class="number">-</span>
+                <span class="number">-</span>
+                <span class="number">-</span>
+            </div> <!-- Numbers row -->
+        </div>
+        <!-- End of dark gray box for numbers -->
         <p>Recommendations</p>
         <div id="recommendationsArea"></div>
     </div>          
@@ -46,6 +85,7 @@
       <canvas id="moistureChart1" width="400" height="200"></canvas>
       <canvas id="moistureChart2" width="400" height="200"></canvas>
       <canvas id="moistureChart3" width="400" height="200"></canvas>
+      <canvas id="moistureChart4" width="400" height="200"></canvas>
     </div>
   </div>
 
@@ -74,17 +114,34 @@
       <!-- Close button for the popup -->
       <span class="close" onclick="closePopup('popup_schedule')">&times;</span>
       <!-- Popup content -->
-      <h2>to be implemented</h2>
+      <h2>Schedule</h2>
+      <h4>Set how many day you would like between plant waterings:</h4>
+      <input type="number" id="scheduleInput" placeholder="">
+      <!-- Button to submit the new value -->
+      <button onclick="updateMaxDataPoints()">Submit</button>
     </div>
   </div>
 
+  <!-- graph setting Popup content area -->
+  <div id="popup_graph" class="popup">
+    <div class="popup-content">
+      <!-- Close button for the popup -->
+      <span class="close" onclick="closePopup('popup_graph')">&times;</span>
+      <!-- Popup content -->
+      <h2>Graph Settings </h2>
+      <!-- Input field for users to input the new value -->
+      <h4>Set graph period:</h4>
+      <input type="number" id="maxDataPointsInput" placeholder="graph period">
+      <!-- Button to submit the new value -->
+      <button onclick="updateMaxDataPoints()">Submit</button>
+    </div>
+  </div>
 
-
-
-
+  <!-- JavaScript files -->
+  <script src="/static/config.js"></script>
   <script src="/static/home.js"></script>
   <script src="/static/home_reccomendations.js"></script>
   <script src="/static/popup.js"></script>
-
+  <script src="/static/number_update.js"></script> <!-- Include the new script here -->
 </body>
 </html>
