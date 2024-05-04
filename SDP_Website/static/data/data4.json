@@ -1,0 +1,14 @@
+
+{
+  "id": 4,
+  "title": "plant 5",
+  "time_labels": ["12:00PM 05/04/2024", "12:10PM 05/04/2024", "12:20PM 05/04/2024"],
+  "moisture_data": [300, 296, 296],
+  "readings_per_day": 4,
+  "last_water_amount": 100,
+  "time_of_last_water": "",
+  "water_multiplier": 1,
+  "current_watering_period" : 1,
+  "graph_period": 10,
+  "current_target": 1
+}

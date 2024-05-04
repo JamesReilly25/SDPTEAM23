@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Moisture Data Graph</title>
+  <style>
+    /* CSS code to set background color */
+    body {
+      background-color: #E9E6E1; /* Change this to any color you prefer */
+      display: flex;
+      flex-direction: column; /* Arrange children in a vertical column */
+      align-items: center; /* Center content horizontally */
+    }
+    .container {
+      display: flex; /* Use flexbox for horizontal arrangement */
+      justify-content: space-between; /* Distribute items evenly along the main axis */
+      width: 70%; /* Adjust width as needed */
+      margin-top: 20px; /* Adjust margin as needed */
+    }
+    .left-panel {
+      width: 40%; /* Adjust the width as needed */
+      background-color: #FFF; /* Change this to any color you prefer */
+      padding: 20px; /* Adjust padding as needed */
+      margin-right: 20px; /* Adjust margin as needed */
+    }
+    .charts {
+      /* Define styles for charts if needed */
+    }
+    canvas {
+      margin-bottom: 20px; /* Adjust margin as needed */
+    }
+    .number-box {
+      background-color: #444; /* Dark gray background */
+      padding: 10px; /* Adjust padding as needed */
+      margin-bottom: 20px; /* Adjust margin as needed */
+      color: #FFF; /* White text color */
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .text {
+      font-size: 18px; /* Adjust font size as needed */
+    }
+    .numbers-container {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+    }
+    .number {
+      font-size: 18px; /* Adjust font size as needed */
+    }
+    h4 {
+            font-weight: normal; /* Set font-weight to normal to remove bold */
+    }
+  </style>
+  <link rel="stylesheet" type="text/css" href="/static/styles.css">
+
+  <!-- Include Chart.js library -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <div class="container">
+    <div class="left-panel">
+        <button class="custom-button" onclick="openPopup('popup')">Name Plants</button>
+        <button class="custom-button" onclick="openPopup('popup_schedule')">Set Schedule</button>
+        <button class="custom-button" onclick="openPopup('popup_graph')">Graph Settings</button>
+        <!-- Dark gray box for numbers -->
+        <div class="number-box">
+            <div class="text">Current amount to water (ml) as of <span id="lastWaterTime">-</span></div> <!-- Text row -->
+            <div class="numbers-container">
+                <span class="number">-</span>
+                <span class="number">-</span>
+                <span class="number">-</span>
+                <span class="number">-</span>
+                <span class="number">-</span>
+            </div> <!-- Numbers row -->
+        </div>
+        <!-- End of dark gray box for numbers -->
+        <p>Recommendations</p>
+        <div id="recommendationsArea"></div>
+    </div>          
+    <div class="charts">
+      <canvas id="moistureChart0" width="400" height="200"></canvas>
+      <canvas id="moistureChart1" width="400" height="200"></canvas>
+      <canvas id="moistureChart2" width="400" height="200"></canvas>
+      <canvas id="moistureChart3" width="400" height="200"></canvas>
+      <canvas id="moistureChart4" width="400" height="200"></canvas>
+    </div>
+  </div>
+
+  <!-- Popup content area -->
+  <div id="popup" class="popup">
+    <div class="popup-content">
+      <!-- Close button for the popup -->
+      <span class="close" onclick="closePopup('popup')">&times;</span>
+      <!-- Popup content -->
+      <h2>Change Plant Names</h2>
+      <div id="popupContent">
+        <!-- Dropdown menu for selecting JSON file -->
+        <select id="jsonDropdown"></select>
+        <!-- Input field for entering new title -->
+        <input type="text" id="newTitle" placeholder="Enter new name">
+        <!-- Button to update the title -->
+        <button onclick="updateTitle()">Update Name</button>
+      </div>
+      <h5>P.S. This will require a page reload to see</h5>
+    </div>
+  </div>
+
+  <!-- schedule Popup content area -->
+  <div id="popup_schedule" class="popup">
+    <div class="popup-content">
+      <!-- Close button for the popup -->
+      <span class="close" onclick="closePopup('popup_schedule')">&times;</span>
+      <!-- Popup content -->
+      <h2>Schedule</h2>
+      <h4>Set how many day you would like between plant waterings:</h4>
+      <input type="number" id="scheduleInput" placeholder="">
+      <!-- Button to submit the new value -->
+      <button onclick="updateMaxDataPoints()">Submit</button>
+    </div>
+  </div>
+
+  <!-- graph setting Popup content area -->
+  <div id="popup_graph" class="popup">
+    <div class="popup-content">
+      <!-- Close button for the popup -->
+      <span class="close" onclick="closePopup('popup_graph')">&times;</span>
+      <!-- Popup content -->
+      <h2>Graph Settings </h2>
+      <!-- Input field for users to input the new value -->
+      <h4>Set graph period:</h4>
+      <input type="number" id="maxDataPointsInput" placeholder="graph period">
+      <!-- Button to submit the new value -->
+      <button onclick="updateMaxDataPoints()">Submit</button>
+    </div>
+  </div>
+
+  <!-- JavaScript files -->
+  <script src="/static/config.js"></script>
+  <script src="/static/home.js"></script>
+  <script src="/static/home_reccomendations.js"></script>
+  <script src="/static/popup.js"></script>
+  <script src="/static/number_update.js"></script> <!-- Include the new script here -->
+</body>
+</html>
